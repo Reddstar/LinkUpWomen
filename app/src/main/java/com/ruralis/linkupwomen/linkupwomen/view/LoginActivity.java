@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.ruralis.linkupwomen.linkupwomen.R;
+import com.ruralis.linkupwomen.linkupwomen.controller.ControladorLogin;
 import com.ruralis.linkupwomen.linkupwomen.model.Sessao;
 import com.ruralis.linkupwomen.linkupwomen.model.Usuario;
 
@@ -37,14 +38,19 @@ public class LoginActivity extends AppCompatActivity {
     private Usuario usuario;
     private static String urlParametros;
     private static String request;
+    private static String infoUsuario;
+    private ControladorLogin controlador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        Sessao.setServerID("http://10.98.1.107:5000");
         sessao = new Sessao();
         usuario = new Usuario();
+        controlador = new ControladorLogin();
+        Sessao.setContext(LoginActivity.this);
 
         editLogin = findViewById(R.id.edt_txtLogin);
         editSenha = findViewById(R.id.edt_txtSenha);
@@ -54,27 +60,25 @@ public class LoginActivity extends AppCompatActivity {
         btn_Acessar.setOnClickListener(new View.OnClickListener(){
             public void onClick (View v){
                 if(editLogin.getText().length() >= 0 || editSenha.getText().length() >= 0){
-                    /*Toast.makeText(getApplication(),
-                            "Os campos login e senha são obrigatórios",
-                            Toast.LENGTH_LONG).show();*/
                     if (validadeCPF(editLogin.getText().toString())){
-                        usuario.setCpf(editLogin.getText().toString());
+                        usuario.setLogin(editLogin.getText().toString());
                         usuario.setSenha(editSenha.getText().toString());
                         request = "http://ava.ufrpe.br/login/token.php";
-                        LoginActivity.urlParametros = "username=" + usuario.getCpf() + "&password=" + usuario.getSenha() + "&service=moodle_mobile_app";
+                        LoginActivity.urlParametros = "username=" + usuario.getLogin() + "&password=" + usuario.getSenha() + "&service=moodle_mobile_app";
                         String tokenData = communicate();
                         Toast.makeText(LoginActivity.this, tokenData, Toast.LENGTH_LONG).show();
                         LoginActivity.urlParametros = "wsfunction=core_webservice_get_site_info&wstoken=" + getToken(tokenData);
-                        Log.d("MEU TOKEN", getToken(tokenData));
                         request ="http://ava.ufrpe.br/webservice/rest/server.php?moodlewsrestformat=json";
-                        Toast.makeText(LoginActivity.this, communicate(), Toast.LENGTH_LONG).show();
+                        infoUsuario = communicate();
                     }
-                    Intent forMain = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(forMain);
+                    if (controlador.loginECadastro(usuario, infoUsuario)) {
+                        Intent forMain = new Intent(LoginActivity.this, GruposActivity.class);
+                        startActivity(forMain);
+                    }
 
                 }else{
 
-                    Intent forMain = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent forMain = new Intent(LoginActivity.this, GruposActivity.class);
                     startActivity(forMain);
                     /*Toast.makeText(getApplication(),
                      "Welcome, baby!",

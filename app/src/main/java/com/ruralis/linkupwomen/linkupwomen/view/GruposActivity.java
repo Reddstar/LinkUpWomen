@@ -1,12 +1,12 @@
 package com.ruralis.linkupwomen.linkupwomen.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -26,7 +26,7 @@ import com.ruralis.linkupwomen.linkupwomen.model.Grupo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity
+public class GruposActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ArrayList<Grupo> grupos = new ArrayList<>();
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_grupos);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_alerta) {
-            // Handle the camera action
+
         } else if (id == R.id.nav_perfil) {
 
         } else if (id == R.id.nav_grupo) {
@@ -121,8 +121,6 @@ public class MainActivity extends AppCompatActivity
 
         public AdaptadorGrupo(List<Grupo> grupos){
             this.grupos = grupos;
-            Integer size = grupos.size();
-            Log.d("LALALA", size.toString());
         }
 
         @Override

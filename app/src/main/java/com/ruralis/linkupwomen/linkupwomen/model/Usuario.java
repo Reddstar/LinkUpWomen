@@ -6,15 +6,17 @@ package com.ruralis.linkupwomen.linkupwomen.model;
 
 public class Usuario {
 
-    private String cpf;
+    private String login;
     private String senha;
+    private String nommeCompleto;
+    private String email;
 
-    public String getCpf() {
-        return cpf;
+    public String getLogin() {
+        return login;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getSenha() {
@@ -23,5 +25,21 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getNommeCompleto() {
+        return nommeCompleto;
+    }
+
+    public void setNommeCompleto(String nommeCompleto) {
+        this.nommeCompleto = nommeCompleto;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
