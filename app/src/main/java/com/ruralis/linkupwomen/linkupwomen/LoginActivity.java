@@ -19,16 +19,18 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        editLogin = (EditText)findViewById(R.id.edt_txtLogin);
-        editSenha = (EditText)findViewById(R.id.edt_txtSenha);
-        btn_Acessar = (Button)findViewById(R.id.btn_acessar);
+        editLogin = findViewById(R.id.edt_txtLogin);
+        editSenha = findViewById(R.id.edt_txtSenha);
+        btn_Acessar = findViewById(R.id.btn_acessar);
 
         btn_Acessar.setOnClickListener(new View.OnClickListener(){
             public void onClick (View v){
                 if(editLogin.getText().length() == 0 || editSenha.getText().length() == 0){
-                    Toast.makeText(getApplication(),
+                    /*Toast.makeText(getApplication(),
                             "Os campos login e senha são obrigatórios",
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_LONG).show();*/
+                    Intent forMain = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(forMain);
 
                 }else{
                     Intent forMain = new Intent(LoginActivity.this, MainActivity.class);

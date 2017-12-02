@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">LinkUpWomen</string>
+    <string name="app_name">Link Up Women</string>
     <string name="local">Local: São Lourenço</string>
     <string name="qtde_pessoas">Assentos disponiveis: 4</string>
     <string name="proprietario">Proprietaria: Maria</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Inicio</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
