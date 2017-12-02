@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.github.clans.fab.FloatingActionMenu;
@@ -31,6 +32,7 @@ public class GruposActivity extends AppCompatActivity
 
     private ArrayList<Grupo> grupos = new ArrayList<>();
     private RecyclerView recycler;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,9 @@ public class GruposActivity extends AppCompatActivity
         setContentView(R.layout.activity_grupos);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        button = findViewById(R.id.button);
+
 
         FloatingActionMenu fab = findViewById(R.id.fab_menu);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -99,12 +104,12 @@ public class GruposActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_alerta) {
-            Intent intentAlerta = new Intent(GruposActivity.this, AlertaActivity.class);
+            Intent intentAlerta = new Intent(getApplicationContext(), AlertasActivity.class);
             startActivity(intentAlerta);
 
 
         } else if (id == R.id.nav_perfil) {
-            Intent intentPerfil = new Intent(GruposActivity.this, PerfilActivity.class);
+            Intent intentPerfil = new Intent(this, PerfilsActivity.class);
             startActivity(intentPerfil);
 
 
@@ -116,13 +121,13 @@ public class GruposActivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_sobre) {
-            Intent intentSobre = new Intent(GruposActivity.this, SobreActivity.class);
+            Intent intentSobre = new Intent(this, SobresActivity.class);
             startActivity(intentSobre);
 
 
 
         } else if (id == R.id.nav_ranking) {
-            Intent intentRanking = new Intent(GruposActivity.this, RankingActivity.class);
+            Intent intentRanking = new Intent(this, RankingsActivity.class);
             startActivity(intentRanking);
 
         }

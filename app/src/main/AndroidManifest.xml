@@ -20,27 +20,11 @@
             android:name=".view.GruposActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".view.AlertaActivity"
-            android:label="@string/title_activity_alerta"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".view.DenunciaActivity"
-            android:label="@string/title_activity_denuncia"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".view.PerfilActivity"
-            android:label="@string/title_activity_perfil"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".view.RankingActivity"
-            android:label="@string/title_activity_ranking"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".view.SobreActivity"
-            android:label="@string/title_activity_sobre"
-            android:theme="@style/AppTheme.NoActionBar" />
-
+        <activity android:name=".view.AlertasActivity" />
+        <activity android:name=".view.RankingsActivity" />
+        <activity android:name=".view.SobresActivity" />
+        <activity android:name=".view.PerfilsActivity" />
+        <activity android:name=".view.DenunciasActivity"></activity>
     </application>
 
 </manifest>

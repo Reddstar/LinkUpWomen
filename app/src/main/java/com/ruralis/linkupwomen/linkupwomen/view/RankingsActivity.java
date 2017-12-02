@@ -11,11 +11,11 @@ import com.ruralis.linkupwomen.linkupwomen.R;
  * Created by Stefany on 02/12/2017.
  */
 
-public class RankingActivity extends AppCompatActivity{
+public class RankingsActivity extends AppCompatActivity{
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-        setContentView(R.layout.ranking_layout);
+        setContentView(R.layout.activity_rankings);
     }
 }
