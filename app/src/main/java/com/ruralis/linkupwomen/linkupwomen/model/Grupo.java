@@ -9,12 +9,14 @@ public class Grupo {
     private String tempo;
     private String partida;
     private String destino;
+    private String descricao;
 
-    public Grupo(String titulo, String tempo, String partida, String destino){
+    public Grupo(String titulo, String tempo, String partida, String destino, String descricao){
         this.titulo = titulo;
         this.tempo = tempo;
         this.partida = partida;
         this.destino = destino;
+        this.descricao = descricao;
     }
 
     public String getTitulo() {
@@ -47,5 +49,13 @@ public class Grupo {
 
     public void setDestino(String destino) {
         this.destino = destino;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 }

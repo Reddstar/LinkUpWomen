@@ -41,9 +41,6 @@ public class GruposActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        button = findViewById(R.id.button);
-
-
         FloatingActionMenu fab = findViewById(R.id.fab_menu);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,12 +65,20 @@ public class GruposActivity extends AppCompatActivity
     }
 
     public void initialize(){
-        Grupo grupo = new Grupo("TESTE", "20 mins", "CEAGRI II", "RU");
+
+        Grupo grupo = new Grupo("Local", "5 mins", "CEAGRI I", "Predio Central", "Saindo do saguâo principal");
         grupos.add(grupo);
+        grupo = new Grupo("Local", "5 mins", "CEAGRI I", "Predio Central", "Saindo do saguâo principal");
         grupos.add(grupo);
+        grupo = new Grupo("Local", "5 mins", "CEAGRI I", "Predio Central", "Saindo do saguâo principal");
         grupos.add(grupo);
+        grupo = new Grupo("Local", "5 mins", "CEAGRI I", "Predio Central", "Saindo do saguâo principal");
         grupos.add(grupo);
+        grupo = new Grupo("Local", "5 mins", "CEAGRI I", "Predio Central", "Saindo do saguâo principal");
+        grupos.add(grupo);
+
         adapt();
+
     }
 
     public void adapt(){
@@ -161,6 +166,7 @@ public class GruposActivity extends AppCompatActivity
             holder.pontoDePartida.setText(holder.pontoDePartida.getText().toString() + grupos.get(position).getPartida());
             holder.destino.setText(holder.destino.getText().toString() + grupos.get(position).getDestino());
             holder.tempo.setText(holder.tempo.getText().toString() + grupos.get(position).getTempo());
+            holder.descricao.setText(holder.descricao.getText().toString() + grupos.get(position).getDescricao());
         }
 
         @Override
@@ -185,6 +191,7 @@ public class GruposActivity extends AppCompatActivity
             TextView pontoDePartida;
             TextView destino;
             TextView tempo;
+            TextView descricao;
 
             public ViewHolder(View item) {
                 super(item);
@@ -193,6 +200,7 @@ public class GruposActivity extends AppCompatActivity
                 pontoDePartida = item.findViewById(R.id.pontoDePartida);
                 destino = item.findViewById(R.id.destino);
                 tempo = item.findViewById(R.id.tempo);
+                descricao = item.findViewById(R.id.descricao_local);
             }
         }
     }

@@ -92,6 +92,24 @@
                 android:layout_toRightOf="@+id/img_horario"
                 android:layout_below="@+id/destino"
                 android:layout_marginLeft="10dp"/>
+                <ImageView
+                    android:id="@+id/img_descricao_local"
+                    android:layout_marginTop="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_horario"
+                    android:src="@drawable/descricao_icon"
+                    />
+                <TextView
+                    android:id="@+id/descricao_local"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Detalhes do local:  "
+                    android:textColor="#555"
+                    android:layout_marginTop="12dp"
+                    android:layout_toRightOf="@+id/img_horario"
+                    android:layout_below="@+id/tempo"
+                    android:layout_marginLeft="10dp"/>
 
         </RelativeLayout>
         </LinearLayout>
