@@ -1,4 +1,4 @@
-package com.ruralis.linkupwomen.linkupwomen.view_controller;
+package com.ruralis.linkupwomen.linkupwomen.view;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -11,11 +11,11 @@ import com.ruralis.linkupwomen.linkupwomen.R;
  * Created by Stefany on 02/12/2017.
  */
 
-public class AlertaActivity extends AppCompatActivity{
+public class SobreActivity extends AppCompatActivity{
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-        setContentView(R.layout.alertas_layout);
+        setContentView(R.layout.sobre_layout);
     }
 }

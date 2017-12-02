@@ -1,4 +1,4 @@
-package com.ruralis.linkupwomen.linkupwomen.view_controller;
+package com.ruralis.linkupwomen.linkupwomen.view;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
