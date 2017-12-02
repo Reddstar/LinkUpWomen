@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "113300763837",
+    "firebase_url": "https://linkupwomen.firebaseio.com",
+    "project_id": "linkupwomen",
+    "storage_bucket": "linkupwomen.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:113300763837:android:f33364668546ab25",
+        "android_client_info": {
+          "package_name": "com.ruralis.linkupwomen.linkupwomen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "113300763837-mumhaec6n8au6mqpns1s58pcibq6gm7v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ruralis.linkupwomen.linkupwomen",
+            "certificate_hash": "a270bea685d42fab0ffa5b72e18942e9a178b9e0"
+          }
+        },
+        {
+          "client_id": "113300763837-earh66ooiopt3vklmjqv8ps0osgr2kb9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1wH8-PdBqotDMwEhZh3nUKlGp9e21b04"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "113300763837-earh66ooiopt3vklmjqv8ps0osgr2kb9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
