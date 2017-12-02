@@ -60,4 +60,11 @@
             fab:fab_label="Procurar por grupos"
             fab:fab_size="mini" />
     </com.github.clans.fab.FloatingActionMenu>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
