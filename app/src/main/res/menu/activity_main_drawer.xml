@@ -20,10 +20,7 @@
             android:id="@+id/nav_mapa"
             android:icon="@drawable/map_icon"
             android:title="Mapa" />
-        <item
-            android:id="@+id/nav_configuracoes"
-            android:icon="@drawable/settings_icon"
-            android:title="Configurações" />
+
         <item
             android:id="@+id/nav_sobre"
             android:icon="@drawable/about_icon"

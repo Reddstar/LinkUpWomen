@@ -34,7 +34,7 @@
         fab:menu_colorRipple="#99d4d4d4"
         fab:menu_fab_label=""
         fab:menu_fab_size="normal"
-        fab:menu_icon="@drawable/up_arrow_icon"
+        fab:menu_icon="@drawable/menu_icon"
         fab:menu_labels_colorNormal="#333"
         fab:menu_labels_colorPressed="#444"
         fab:menu_labels_colorRipple="#66efecec"
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/add_icon"
             fab:fab_label="Criar novo grupo"
-            fab:fab_size="mini" />
+            fab:fab_size="normal" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_procurar"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/search_icon"
             fab:fab_label="Procurar por grupos"
-            fab:fab_size="mini" />
+            fab:fab_size="normal" />
     </com.github.clans.fab.FloatingActionMenu>
 
 

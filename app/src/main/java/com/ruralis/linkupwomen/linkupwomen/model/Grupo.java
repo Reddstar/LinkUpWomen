@@ -1,4 +1,4 @@
-package com.ruralis.linkupwomen.linkupwomen;
+package com.ruralis.linkupwomen.linkupwomen.model;
 
 /**
  * Created by ricardo on 02/12/2017.
