@@ -17,13 +17,18 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo_art"/>
 
         <EditText
             android:id="@+id/edt_txtLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Login"
-            android:layout_marginTop="42dp"
+            android:textColorHint="@color/colorPrimary"
+            android:layout_marginTop="34dp"
             android:layout_marginRight="26dp"
             android:layout_marginLeft="26dp"/>
 
@@ -32,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Senha"
+            android:textColorHint="@color/colorPrimary"
             android:layout_marginRight="26dp"
             android:layout_marginLeft="26dp"/>
 
