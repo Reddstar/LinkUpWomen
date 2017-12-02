@@ -78,7 +78,8 @@
                         android:layout_marginTop="2dp"
                         android:layout_marginLeft="42dp"
                         android:layout_marginBottom="2dp"
-                        android:layout_marginRight="42dp"/>
+                        android:layout_marginRight="42dp"
+                        android:id="@+id/edit_text_usuarioReportado"/>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
@@ -128,7 +129,8 @@
                         android:layout_marginTop="2dp"
                         android:layout_marginLeft="42dp"
                         android:layout_marginBottom="2dp"
-                        android:layout_marginRight="42dp"/>
+                        android:layout_marginRight="42dp"
+                        android:id="@+id/edit_text_relatoDenuncia"/>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
@@ -142,7 +144,8 @@
             android:layout_marginLeft="42dp"
             android:layout_marginBottom="2dp"
             android:layout_marginRight="42dp"
-            android:backgroundTint="#d66767"/>
+            android:backgroundTint="#d66767"
+            android:id="@+id/btn_denunciarUsuario"/>
 
 
     </android.support.v7.widget.CardView>

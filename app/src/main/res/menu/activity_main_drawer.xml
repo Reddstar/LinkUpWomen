@@ -26,6 +26,11 @@
             android:icon="@drawable/about_icon"
             android:title="Sobre" />
 
+        <item
+            android:id="@+id/nav_ranking"
+            android:icon="@drawable/ranking_cup"
+            android:title="Ranking" />
+
     </group>
 
 </menu>

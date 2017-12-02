@@ -99,16 +99,35 @@ public class GruposActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_alerta) {
+            Intent intentAlerta = new Intent(GruposActivity.this, AlertaActivity.class);
+            startActivity(intentAlerta);
+
 
         } else if (id == R.id.nav_perfil) {
+            Intent intentPerfil = new Intent(GruposActivity.this, PerfilActivity.class);
+            startActivity(intentPerfil);
+
 
         } else if (id == R.id.nav_grupo) {
 
+
+
         } else if (id == R.id.nav_mapa) {
 
+
         } else if (id == R.id.nav_sobre) {
+            Intent intentSobre = new Intent(GruposActivity.this, SobreActivity.class);
+            startActivity(intentSobre);
+
+
+
+        } else if (id == R.id.nav_ranking) {
+            Intent intentRanking = new Intent(GruposActivity.this, RankingActivity.class);
+            startActivity(intentRanking);
 
         }
+
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
