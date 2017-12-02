@@ -136,9 +136,9 @@ public class MainActivity extends AppCompatActivity
         public void onBindViewHolder(ViewHolder holder, int position) {
             holder.setIsRecyclable(false);
             holder.tituloGrupo.setText(grupos.get(position).getTitulo());
-            holder.pontoDePartida.setText(grupos.get(position).getPartida());
-            holder.destino.setText(grupos.get(position).getDestino());
-            holder.tempo.setText(grupos.get(position).getTempo());
+            holder.pontoDePartida.setText(holder.pontoDePartida.getText().toString() + grupos.get(position).getPartida());
+            holder.destino.setText(holder.destino.getText().toString() + grupos.get(position).getDestino());
+            holder.tempo.setText(holder.tempo.getText().toString() + grupos.get(position).getTempo());
         }
 
         @Override
