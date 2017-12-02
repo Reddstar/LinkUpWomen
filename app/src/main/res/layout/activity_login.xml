@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.ruralis.linkupwomen.linkupwomen.LoginActivity">
 
 
+    <ImageView
+        android:id="@+id/img_login"
+        android:layout_width="108dp"
+        android:layout_height="113dp"
+        android:layout_gravity="center"
+        android:src="@drawable/alert_icon" />
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:id="@+id/edt_txtLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Login" />
+
+    <EditText
+        android:id="@+id/edt_txtSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Senha" />
+
+    <Button
+        android:id="@+id/btn_acessar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="Entrar" />
+
+
+</LinearLayout>
