@@ -6,32 +6,46 @@
     android:orientation="vertical"
     tools:context="com.ruralis.linkupwomen.linkupwomen.LoginActivity">
 
-
-    <ImageView
-        android:id="@+id/img_login"
-        android:layout_width="108dp"
-        android:layout_height="113dp"
-        android:layout_gravity="center"
-        android:src="@drawable/alert_icon" />
-
-    <EditText
-        android:id="@+id/edt_txtLogin"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Login" />
+        android:layout_height="match_parent"
+        android:layout_margin="42dp"
+        android:elevation="12dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edt_txtSenha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Senha" />
+        <EditText
+            android:id="@+id/edt_txtLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Login"
+            android:layout_marginTop="42dp"
+            android:layout_marginRight="26dp"
+            android:layout_marginLeft="26dp"/>
 
-    <Button
-        android:id="@+id/btn_acessar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:text="Entrar" />
+        <EditText
+            android:id="@+id/edt_txtSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Senha"
+            android:layout_marginRight="26dp"
+            android:layout_marginLeft="26dp"/>
 
+        <Button
+            android:id="@+id/btn_acessar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="Entrar"
+            android:layout_marginRight="26dp"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="38dp"/>
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
 
 </LinearLayout>
