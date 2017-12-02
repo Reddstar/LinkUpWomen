@@ -45,11 +45,11 @@ public class ControladorLogin {
         ControladorLogin.usuario = usuario;
         String result = comunicate();
         Toast.makeText(Sessao.getContext(), result, Toast.LENGTH_LONG).show();
-        if (result.contains("ERROR")) {
+        if (result.contains("ERROR") || result.contains("Error")) {
             request = "/registrarusuario";
             result = comunicate();
             Toast.makeText(Sessao.getContext(), result, Toast.LENGTH_LONG).show();
-            if (result.contains("ERROR")) {
+            if (result.contains("ERROR") || result.contains("Error")) {
                 return false;
             }
         }

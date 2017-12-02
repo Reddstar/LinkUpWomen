@@ -12,6 +12,7 @@
         <item name="fab_colorPressed">@color/colorAccent</item>
         <item name="menu_colorNormal">@color/colorAccent</item>
         <item name="menu_colorPressed">@color/colorAccent</item>
+        <item name="android:windowDisablePreview">true</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
