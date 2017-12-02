@@ -1,4 +1,4 @@
-package com.ruralis.linkupwomen.linkupwomen.view_controller;
+package com.ruralis.linkupwomen.linkupwomen.view;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -13,8 +13,6 @@ import android.widget.Toast;
 import com.ruralis.linkupwomen.linkupwomen.R;
 import com.ruralis.linkupwomen.linkupwomen.model.Sessao;
 import com.ruralis.linkupwomen.linkupwomen.model.Usuario;
-
-import org.json.JSONException;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
