@@ -1,5 +1,6 @@
 package com.ruralis.linkupwomen.linkupwomen;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,16 +25,17 @@ public class LoginActivity extends AppCompatActivity {
 
         btn_Acessar.setOnClickListener(new View.OnClickListener(){
             public void onClick (View v){
-
-                if(editLogin.getText().length() == 0 || editSenha.getText().length() ==0){
+                if(editLogin.getText().length() == 0 || editSenha.getText().length() == 0){
                     Toast.makeText(getApplication(),
                             "Os campos login e senha são obrigatórios",
                             Toast.LENGTH_LONG).show();
 
                 }else{
-                    Toast.makeText(getApplication(),
+                    Intent forMain = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(forMain);
+                    /*Toast.makeText(getApplication(),
                      "Welcome, baby!",
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_LONG).show();*/
                 }
             }
         });
