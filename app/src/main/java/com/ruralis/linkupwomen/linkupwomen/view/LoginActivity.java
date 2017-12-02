@@ -83,9 +83,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     Intent forMain = new Intent(LoginActivity.this, GruposActivity.class);
                     startActivity(forMain);
-                    /*Toast.makeText(getApplication(),
-                     "Welcome, baby!",
-                            Toast.LENGTH_LONG).show();*/
                 }
             }
         });
