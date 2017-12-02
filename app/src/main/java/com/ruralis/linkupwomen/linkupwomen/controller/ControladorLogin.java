@@ -26,6 +26,7 @@ public class ControladorLogin {
 
     private static Usuario usuario;
     private Sessao sessao;
+    private static String jsonText;
 
     private static String request;
 
@@ -43,10 +44,12 @@ public class ControladorLogin {
         transformarEmDados(data, usuario);
         ControladorLogin.usuario = usuario;
         String result = comunicate();
-        if (result == "0") {
+        Toast.makeText(Sessao.getContext(), result, Toast.LENGTH_LONG).show();
+        if (result.contains("ERROR")) {
             request = "/registrarusuario";
             result = comunicate();
-            if (result == "0") {
+            Toast.makeText(Sessao.getContext(), result, Toast.LENGTH_LONG).show();
+            if (result.contains("ERROR")) {
                 return false;
             }
         }
@@ -82,18 +85,21 @@ public class ControladorLogin {
                 try {
                     URL url = new URL(Sessao.getServerID() + request);
                     connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
                     connection.setDoOutput(true);
                     connection.setDoInput(true);
                     connection.setRequestMethod("POST");
                     OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+
 
                     JSONObject json = new JSONObject();
                     json.put("CPF", "null");
                     json.put("Login", usuario.getLogin());
                     json.put("Senha", usuario.getSenha());
                     json.put("Nome_completo", usuario.getNommeCompleto());
+                    json.put("Email", "null");
                     writer.write(json.toString());
-                    Toast.makeText(Sessao.getContext(), json.toString(), Toast.LENGTH_LONG).show();
+                    ControladorLogin.jsonText = json.toString();
                     writer.close();
                     connection.connect();
                     InputStream in;

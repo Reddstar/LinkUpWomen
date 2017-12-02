@@ -66,7 +66,6 @@ public class LoginActivity extends AppCompatActivity {
                         request = "http://ava.ufrpe.br/login/token.php";
                         LoginActivity.urlParametros = "username=" + usuario.getLogin() + "&password=" + usuario.getSenha() + "&service=moodle_mobile_app";
                         String tokenData = communicate();
-                        Toast.makeText(LoginActivity.this, tokenData, Toast.LENGTH_LONG).show();
                         LoginActivity.urlParametros = "wsfunction=core_webservice_get_site_info&wstoken=" + getToken(tokenData);
                         request ="http://ava.ufrpe.br/webservice/rest/server.php?moodlewsrestformat=json";
                         infoUsuario = communicate();
