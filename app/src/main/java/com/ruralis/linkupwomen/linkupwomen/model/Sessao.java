@@ -12,7 +12,7 @@ public class Sessao {
     private static Context context;
     private Usuario usuario;
     private static Sessao instance = new Sessao();
-    private static String[] locais = {"N-Existe", "CEAGRI 1", "CEAGRI 2", "PESCA", "DLCH", "Biblioteca Central", "DCE", "CEGOE", "Casa dos Estudantes (CEAGRI)", "Casa dos Estudantes (Feminina)", "Casa dos Estudantes (Masculino)", "Hospital Veterinário", "Zootecnia"};
+    private static String[] locais = {"N-Existe", "CEAGRI 1", "CEAGRI 2", "PESCA", "DLCH", "Biblioteca Central", "DCE","Biologia", "CEGOE", "Casa dos Estudantes (CEAGRI)", "Casa dos Estudantes (Feminina)", "Casa dos Estudantes (Masculino)", "Hospital Veterinário", "Zootecnia"};
 
     private Sessao(){
 

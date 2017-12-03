@@ -103,9 +103,24 @@ public class GruposActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        Intent voltarLogin = new Intent(GruposActivity.this, LoginActivity.class);
-        finish();
-        startActivity(voltarLogin);
+        AlertDialog builder = new AlertDialog.Builder(this)
+                .setTitle("Saindo")
+                .setMessage("Tem certeza que deseja sair da aplicação?")
+                .setPositiveButton("SIM", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent voltarMenu = new Intent(GruposActivity.this, LoginActivity.class);
+                        finish();
+                        startActivity(voltarMenu);
+                    }
+
+                })
+                .setNegativeButton("NÃO", null)
+                .show();
+        builder.show();
+        builder.getButton(builder.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#a5098f"));
+        builder.getButton(builder.BUTTON_POSITIVE).setTextColor(Color.parseColor("#a5098f"));
     }
 
     private void criarNovoGrupo() {
@@ -114,7 +129,7 @@ public class GruposActivity extends AppCompatActivity
 
         final int[] spinnerPosition = {0};
 
-        final String[] options = {"CEAGRI 1", "CEAGRI 2", "PESCA", "DLCH", "Biblioteca Central", "DCE", "CEGOE", "Casa dos Estudantes (CEAGRI)", "Casa dos Estudantes (Feminina)", "Casa dos Estudantes (Masculino)", "Hospital Veterinário", "Zootecnia"};
+        final String[] options = {"CEAGRI 1", "CEAGRI 2", "PESCA", "DLCH", "Biblioteca Central", "DCE","Biologia", "CEGOE", "Casa dos Estudantes (CEAGRI)", "Casa dos Estudantes (Feminina)", "Casa dos Estudantes (Masculino)", "Hospital Veterinário", "Zootecnia"};
         final Spinner spinner = layout.findViewById(R.id.spinner);
         final EditText descricao = layout.findViewById(R.id.descricao);
         final EditText tempoAdd = layout.findViewById(R.id.edt_tempo);
