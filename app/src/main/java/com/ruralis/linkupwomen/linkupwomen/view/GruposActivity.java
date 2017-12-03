@@ -251,7 +251,7 @@ public class GruposActivity extends AppCompatActivity
             grupo.setDestino(json.getString("Destino").replace("\n", ""));
             grupo.setPartida(json.getString("Local_Partida").replace("\n", ""));
             grupo.setTempo(json.getString("Partida").replace("\n", ""));
-            grupo.setTitulo(json.getString("Local_Partida").replace("\n", ""));
+            grupo.setTitulo(json.getString("ID_Dono").replace("\n", "").split(" ")[0]);
         } catch (JSONException e) {
             e.printStackTrace();
         }

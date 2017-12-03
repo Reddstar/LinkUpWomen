@@ -76,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                         LoginActivity.urlParametros = "wsfunction=core_webservice_get_site_info&wstoken=" + getToken(tokenData);
                         request ="http://ava.ufrpe.br/webservice/rest/server.php?moodlewsrestformat=json";
                         infoUsuario = communicate();
+                        Log.d("RETORNO", infoUsuario);
                     }
                     if (controlador.loginECadastro(usuario, infoUsuario)) {
                         Intent forMain = new Intent(LoginActivity.this, GruposActivity.class);

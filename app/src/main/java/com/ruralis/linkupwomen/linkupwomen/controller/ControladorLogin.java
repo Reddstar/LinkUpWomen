@@ -43,13 +43,14 @@ public class ControladorLogin {
         transformarEmDados(data, usuario);
         ControladorLogin.usuario = usuario;
         String result = comunicate();
+        Log.d("USUARIO", result);
         if (result.contains("ERROR") || result.contains("Error")) {
             request = "/registrarusuario";
             result = comunicate();
+            Log.d("USUARIO", result);
             if (result.contains("ERROR") || result.contains("Error")) {
                 return false;
             } else {
-                Log.d("ID", "id setted");
                 sessao.getUsuario().setId(result);
             }
         } else {
@@ -100,6 +101,7 @@ public class ControladorLogin {
                     json.put("Senha", usuario.getSenha());
                     json.put("Nome_completo", usuario.getNommeCompleto());
                     json.put("Email", "null");
+                    Log.d("JSON: ", json.toString());
                     writer.write(json.toString());
                     ControladorLogin.jsonText = json.toString();
                     writer.close();
