@@ -1,12 +1,14 @@
 package com.ruralis.linkupwomen.linkupwomen.view;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -17,22 +19,37 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.github.clans.fab.FloatingActionMenu;
 import com.ruralis.linkupwomen.linkupwomen.R;
 import com.ruralis.linkupwomen.linkupwomen.model.Grupo;
+import com.ruralis.linkupwomen.linkupwomen.model.Sessao;
 
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class GruposActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ArrayList<Grupo> grupos = new ArrayList<>();
     private RecyclerView recycler;
-    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,24 +78,9 @@ public class GruposActivity extends AppCompatActivity
 
         recycler = findViewById(R.id.recycler);
 
-        initialize();
-    }
 
-    public void initialize(){
-
-        Grupo grupo = new Grupo("Local", "5 mins", "CEAGRI I", "Predio Central", "Saindo do saguâo principal");
-        grupos.add(grupo);
-        grupo = new Grupo("Local", "5 mins", "CEAGRI I", "Predio Central", "Saindo do saguâo principal");
-        grupos.add(grupo);
-        grupo = new Grupo("Local", "5 mins", "CEAGRI I", "Predio Central", "Saindo do saguâo principal");
-        grupos.add(grupo);
-        grupo = new Grupo("Local", "5 mins", "CEAGRI I", "Predio Central", "Saindo do saguâo principal");
-        grupos.add(grupo);
-        grupo = new Grupo("Local", "5 mins", "CEAGRI I", "Predio Central", "Saindo do saguâo principal");
-        grupos.add(grupo);
-
+        tratarAResposta(communicate());
         adapt();
-
     }
 
     public void adapt(){
@@ -144,6 +146,98 @@ public class GruposActivity extends AppCompatActivity
         return true;
     }
 
+    public Grupo criarGrupo(JSONObject grupoData){
+        Grupo grupo = null;
+        try {
+            grupo = new Grupo();
+            JSONObject json = grupoData;
+            grupo.setDescricao(json.getString("Descricao"));
+            grupo.setDestino(json.getString("Destino"));
+            grupo.setPartida(json.getString("Local_Partida"));
+            grupo.setTempo(json.getString("Partida"));
+            grupo.setTitulo(json.getString("Local_Partida"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return grupo;
+    }
+
+    public void tratarAResposta(String data){
+        try {
+            JSONObject jsonObject = new JSONObject(data);
+            Iterator<String> iterator = jsonObject.keys();
+            while (iterator.hasNext()){
+                String jc = iterator.next();
+                JSONObject object = jsonObject.getJSONObject(jc);
+                grupos.add(criarGrupo(object));
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public String communicate(){
+        final GruposActivity.ControladorGrupos controller = new GruposActivity.ControladorGrupos();
+        try {
+            controller.execute();
+            controller.get();
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return controller.result;
+    }
+
+    private class ControladorGrupos extends AsyncTask<String, Void, String> {
+
+        public String result;
+        public String request ="/gettodosgrupos";
+
+        @Override
+        protected String doInBackground(String... strings) {
+            StringBuilder result = new StringBuilder();
+            HttpURLConnection connection = null;
+            try {
+                URL url = new URL(Sessao.getServerID() + request);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                connection.setDoOutput(true);
+                connection.setDoInput(true);
+                connection.setRequestMethod("POST");
+                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+                writer.write("null");
+                writer.close();
+                connection.connect();
+                InputStream in;
+
+                if (connection.getResponseCode() >= HttpURLConnection.HTTP_BAD_REQUEST)
+                    in = new BufferedInputStream(connection.getErrorStream());
+                else
+                    in = new BufferedInputStream(connection.getInputStream());
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    result.append(line);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (connection != null) {
+                    connection.disconnect();
+                }
+            }
+            this.result = result.toString();
+            return this.result;
+        }
+
+    }
+
     private class AdaptadorGrupo extends RecyclerView.Adapter<AdaptadorGrupo.ViewHolder> {
 
         private List<Grupo> grupos;
@@ -165,7 +259,19 @@ public class GruposActivity extends AppCompatActivity
             holder.tituloGrupo.setText(grupos.get(position).getTitulo());
             holder.pontoDePartida.setText(holder.pontoDePartida.getText().toString() + grupos.get(position).getPartida());
             holder.destino.setText(holder.destino.getText().toString() + grupos.get(position).getDestino());
-            holder.tempo.setText(holder.tempo.getText().toString() + grupos.get(position).getTempo());
+            String[] horaPartes = grupos.get(position).getTempo().split(" ");
+            String hora = horaPartes[horaPartes.length - 2];
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+            String tempoRestante = " ... ";
+            try {
+                Date dataFim = simpleDateFormat.parse(hora);
+                Date dataAgora = new Date();
+                tempoRestante = String.valueOf(dataFim.getTime() - dataAgora.getTime());
+            } catch (ParseException e) {
+                e.printStackTrace();
+
+            }
+            holder.tempo.setText(holder.tempo.getText().toString() + tempoRestante + " segundos");
             holder.descricao.setText(holder.descricao.getText().toString() + grupos.get(position).getDescricao());
         }
 

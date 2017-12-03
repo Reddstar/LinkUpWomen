@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                         LoginActivity.urlParametros = "username=" + usuario.getLogin() + "&password=" + usuario.getSenha() + "&service=moodle_mobile_app";
                         String tokenData = communicate();
                         if (!tokenData.contains("token")){
-
+                            editSenha.setError("Senha ou Login incorreto");
                             return;
                         }
                         LoginActivity.urlParametros = "wsfunction=core_webservice_get_site_info&wstoken=" + getToken(tokenData);

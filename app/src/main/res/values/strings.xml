@@ -3,13 +3,13 @@
     <string name="local">Local: São Lourenço</string>
     <string name="qtde_pessoas">Assentos disponiveis: 4</string>
     <string name="proprietario">Proprietaria: Maria</string>
-    <string name="title_activity_main">Inicio</string>
+    <string name="title_activity_main">Grupos</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
     <string name="sobre">Aplicativo desenvolvido por alunos da UFRPE.</string>
     <string name="equipe">Equipe de desenvolvimento:</string>
-    <string name="title_activity_alerta">Alerta</string>
+    <string name="title_activity_alerta">Alertas</string>
     <string name="title_activity_denuncia">Denuncia</string>
     <string name="title_activity_perfil">Perfil</string>
     <string name="title_activity_ranking">Ranking</string>

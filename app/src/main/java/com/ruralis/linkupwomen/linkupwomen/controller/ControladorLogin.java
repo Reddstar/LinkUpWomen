@@ -1,11 +1,9 @@
 package com.ruralis.linkupwomen.linkupwomen.controller;
 
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import com.ruralis.linkupwomen.linkupwomen.model.Sessao;
 import com.ruralis.linkupwomen.linkupwomen.model.Usuario;
-import com.ruralis.linkupwomen.linkupwomen.view.LoginActivity;
 
 import org.json.JSONObject;
 
@@ -44,11 +42,9 @@ public class ControladorLogin {
         transformarEmDados(data, usuario);
         ControladorLogin.usuario = usuario;
         String result = comunicate();
-        Toast.makeText(Sessao.getContext(), result, Toast.LENGTH_LONG).show();
         if (result.contains("ERROR") || result.contains("Error")) {
             request = "/registrarusuario";
             result = comunicate();
-            Toast.makeText(Sessao.getContext(), result, Toast.LENGTH_LONG).show();
             if (result.contains("ERROR") || result.contains("Error")) {
                 return false;
             }

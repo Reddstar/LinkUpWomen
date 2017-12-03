@@ -19,6 +19,10 @@ public class Grupo {
         this.descricao = descricao;
     }
 
+    public Grupo(){
+
+    }
+
     public String getTitulo() {
         return titulo;
     }
