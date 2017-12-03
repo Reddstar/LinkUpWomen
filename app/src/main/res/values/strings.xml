@@ -14,4 +14,8 @@
     <string name="title_activity_perfil">Perfil</string>
     <string name="title_activity_ranking">Ranking</string>
     <string name="title_activity_sobre">Sobre</string>
+
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

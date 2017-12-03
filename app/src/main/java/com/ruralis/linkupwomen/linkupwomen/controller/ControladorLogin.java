@@ -1,6 +1,7 @@
 package com.ruralis.linkupwomen.linkupwomen.controller;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.ruralis.linkupwomen.linkupwomen.model.Sessao;
 import com.ruralis.linkupwomen.linkupwomen.model.Usuario;
@@ -23,7 +24,7 @@ import java.util.concurrent.ExecutionException;
 public class ControladorLogin {
 
     private static Usuario usuario;
-    private Sessao sessao;
+    private Sessao sessao = Sessao.getInstance();
     private static String jsonText;
 
     private static String request;
@@ -47,7 +48,12 @@ public class ControladorLogin {
             result = comunicate();
             if (result.contains("ERROR") || result.contains("Error")) {
                 return false;
+            } else {
+                Log.d("ID", "id setted");
+                sessao.getUsuario().setId(result);
             }
+        } else {
+            sessao.getUsuario().setId(result);
         }
         return true;
     }

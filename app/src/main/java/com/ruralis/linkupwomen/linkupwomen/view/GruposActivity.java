@@ -1,10 +1,12 @@
 package com.ruralis.linkupwomen.linkupwomen.view;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,10 +21,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.github.clans.fab.FloatingActionMenu;
+import com.github.clans.fab.FloatingActionButton;
 import com.ruralis.linkupwomen.linkupwomen.R;
+import com.ruralis.linkupwomen.linkupwomen.controller.ControladorGrupo;
 import com.ruralis.linkupwomen.linkupwomen.model.Grupo;
 import com.ruralis.linkupwomen.linkupwomen.model.Sessao;
 
@@ -40,6 +47,7 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -48,8 +56,13 @@ import java.util.concurrent.ExecutionException;
 public class GruposActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private Sessao sessao = Sessao.getInstance();
+    private ControladorGrupo controladorGrupo = new ControladorGrupo();
     private ArrayList<Grupo> grupos = new ArrayList<>();
     private RecyclerView recycler;
+    private static Date dataAgora = new Date();
+    private FloatingActionButton atualizar;
+    private FloatingActionButton criar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,20 +71,26 @@ public class GruposActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionMenu fab = findViewById(R.id.fab_menu);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        atualizar = findViewById(R.id.fab_atualizar);
+        criar = findViewById(R.id.fab_add);
+        criar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                criarNovoGrupo();
+            }
+        });
+        atualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                atualizarGrupos();
+            }
+        });
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -79,7 +98,84 @@ public class GruposActivity extends AppCompatActivity
         recycler = findViewById(R.id.recycler);
 
 
-        tratarAResposta(communicate());
+        atualizarGrupos();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent voltarLogin = new Intent(GruposActivity.this, LoginActivity.class);
+        finish();
+        startActivity(voltarLogin);
+    }
+
+    private void criarNovoGrupo() {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View layout = inflater.inflate(R.layout.dialog_layout, null);
+
+        final int[] spinnerPosition = {0};
+
+        final String[] options = {"CEAGRI 1", "CEAGRI 2", "PESCA", "DLCH", "Biblioteca Central", "DCE", "CEGOE", "Casa dos Estudantes (CEAGRI)", "Casa dos Estudantes (Feminina)", "Casa dos Estudantes (Masculino)", "Hospital Veterinário", "Zootecnia"};
+        final Spinner spinner = layout.findViewById(R.id.spinner);
+        final EditText descricao = layout.findViewById(R.id.descricao);
+        final EditText tempoAdd = layout.findViewById(R.id.edt_tempo);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(GruposActivity.this, android.R.layout.simple_spinner_item, options);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                spinnerPosition[0] = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                spinnerPosition[0] = 0;
+            }
+        });
+
+        //Building dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(layout);
+        builder.setPositiveButton("CRIAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Grupo grupo = new Grupo();
+                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+                grupo.setTitulo(String.valueOf(spinnerPosition[0] + 1));
+                grupo.setDestino(grupo.getTitulo());
+                Calendar c = Calendar.getInstance();
+                Date tempo = new Date();
+                c.setTime(tempo);
+                int add = Integer.parseInt(tempoAdd.getText().toString());
+                c.add(Calendar.MINUTE, add);
+                grupo.setTempo(format.format(c.getTime()));
+                grupo.setDescricao(descricao.getText().toString());
+                grupo.setIdDono(sessao.getUsuario().getId());
+                grupo.setPartida(String.valueOf(Sessao.getIdPorNome("CEAGRI 2")));
+                controladorGrupo.setGrupo(grupo);
+                controladorGrupo.enviarGrupo();
+
+            }
+        });
+        builder.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.getButton(dialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#a5098f"));
+        dialog.getButton(dialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#a5098f"));
+    }
+
+    public void atualizarGrupos(){
+        grupos = new ArrayList<>();
+        String resposta = communicate();
+        Log.d("RESPOSTA", resposta);
+        tratarResposta(resposta);
+        dataAgora = new Date();
         adapt();
     }
 
@@ -151,18 +247,18 @@ public class GruposActivity extends AppCompatActivity
         try {
             grupo = new Grupo();
             JSONObject json = grupoData;
-            grupo.setDescricao(json.getString("Descricao"));
-            grupo.setDestino(json.getString("Destino"));
-            grupo.setPartida(json.getString("Local_Partida"));
-            grupo.setTempo(json.getString("Partida"));
-            grupo.setTitulo(json.getString("Local_Partida"));
+            grupo.setDescricao(json.getString("Descricao").replace("\n", ""));
+            grupo.setDestino(json.getString("Destino").replace("\n", ""));
+            grupo.setPartida(json.getString("Local_Partida").replace("\n", ""));
+            grupo.setTempo(json.getString("Partida").replace("\n", ""));
+            grupo.setTitulo(json.getString("Local_Partida").replace("\n", ""));
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return grupo;
     }
 
-    public void tratarAResposta(String data){
+    public void tratarResposta(String data){
         try {
             JSONObject jsonObject = new JSONObject(data);
             Iterator<String> iterator = jsonObject.keys();
@@ -255,23 +351,21 @@ public class GruposActivity extends AppCompatActivity
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+            SimpleDateFormat formatoTexto = new SimpleDateFormat("HH:mm");
             holder.setIsRecyclable(false);
             holder.tituloGrupo.setText(grupos.get(position).getTitulo());
             holder.pontoDePartida.setText(holder.pontoDePartida.getText().toString() + grupos.get(position).getPartida());
             holder.destino.setText(holder.destino.getText().toString() + grupos.get(position).getDestino());
             String[] horaPartes = grupos.get(position).getTempo().split(" ");
-            String hora = horaPartes[horaPartes.length - 2];
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
-            String tempoRestante = " ... ";
+            String tempoRestante = horaPartes[horaPartes.length - 2];
             try {
-                Date dataFim = simpleDateFormat.parse(hora);
-                Date dataAgora = new Date();
-                tempoRestante = String.valueOf(dataFim.getTime() - dataAgora.getTime());
+                Date data = format.parse(tempoRestante);
+                tempoRestante = formatoTexto.format(data);
             } catch (ParseException e) {
                 e.printStackTrace();
-
             }
-            holder.tempo.setText(holder.tempo.getText().toString() + tempoRestante + " segundos");
+            holder.tempo.setText(holder.tempo.getText().toString() + tempoRestante + "Hrs");
             holder.descricao.setText(holder.descricao.getText().toString() + grupos.get(position).getDescricao());
         }
 

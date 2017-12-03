@@ -5,6 +5,7 @@ package com.ruralis.linkupwomen.linkupwomen.model;
  */
 
 public class Grupo {
+    private String idDono;
     private String titulo;
     private String tempo;
     private String partida;
@@ -61,5 +62,13 @@ public class Grupo {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public String getIdDono() {
+        return idDono;
+    }
+
+    public void setIdDono(String idDono) {
+        this.idDono = idDono;
     }
 }

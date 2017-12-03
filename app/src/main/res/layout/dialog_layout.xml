@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.CardView
+            android:id="@+id/titulo"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="0dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/txtTiulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:textSize="26sp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
+                    tools:text="Criar Novo Grupo" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <TextView
+            android:id="@+id/descricao_partida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Local de Partida"
+            android:layout_below="@+id/titulo"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="14dp"
+            android:textSize="16dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/local_partida"
+            android:layout_below="@+id/descricao_partida"
+            android:layout_margin="22dp"
+            android:text="CEAGRI 2"/>
+
+        <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/descricao_local"
+        android:layout_marginLeft="16dp">
+    </Spinner>
+    <TextView
+        android:id="@+id/descricao_local"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Local de destino"
+        android:layout_below="@+id/local_partida"
+        android:layout_marginLeft="12dp"
+        android:textSize="16dp"/>
+
+    <EditText
+        android:id="@+id/descricao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner"
+        android:layout_margin="16dp"
+        android:hint="Detalhes do local de partida"/>
+    <TextView
+        android:id="@+id/descricao_tempo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/descricao"
+        android:layout_margin="20dp"
+        android:text="Tempo até a partida"
+        android:textSize="16dp"/>
+    <EditText
+        android:id="@+id/edt_tempo"
+        android:layout_width="100dp"
+        android:inputType="number"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/descricao"
+        android:layout_marginLeft="12dp"
+        android:layout_toRightOf="@+id/descricao_tempo"
+        android:layout_marginTop="16dp"/>
+        <TextView
+            android:id="@+id/descricao_formato"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/descricao"
+            android:layout_toRightOf="@+id/edt_tempo"
+            android:layout_margin="20dp"
+            android:text="mins"
+            android:textSize="16dp"/>
+
+    </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

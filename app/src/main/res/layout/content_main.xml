@@ -66,11 +66,11 @@
             fab:fab_size="normal" />
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fab_procurar"
+            android:id="@+id/fab_atualizar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/search_icon"
-            fab:fab_label="Procurar por grupos"
+            android:src="@drawable/refresh_icon"
+            fab:fab_label="Atualizar grupos"
             fab:fab_size="normal" />
     </com.github.clans.fab.FloatingActionMenu>
 

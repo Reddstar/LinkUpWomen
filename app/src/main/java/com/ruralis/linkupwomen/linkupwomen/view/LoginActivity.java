@@ -46,8 +46,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
+
         Sessao.setServerID("http://10.98.1.107:5000");
-        sessao = new Sessao();
+        sessao = Sessao.getInstance();
         usuario = new Usuario();
         controlador = new ControladorLogin();
         Sessao.setContext(LoginActivity.this);
@@ -66,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                         request = "http://ava.ufrpe.br/login/token.php";
                         LoginActivity.urlParametros = "username=" + usuario.getLogin() + "&password=" + usuario.getSenha() + "&service=moodle_mobile_app";
                         String tokenData = communicate();
+                        sessao.setUsuario(usuario);
                         if (!tokenData.contains("token")){
                             editSenha.setError("Senha ou Login incorreto");
                             return;
@@ -77,11 +80,13 @@ public class LoginActivity extends AppCompatActivity {
                     if (controlador.loginECadastro(usuario, infoUsuario)) {
                         Intent forMain = new Intent(LoginActivity.this, GruposActivity.class);
                         startActivity(forMain);
+                        finish();
                     }
 
                 }else{
 
                     Intent forMain = new Intent(LoginActivity.this, GruposActivity.class);
+                    finish();
                     startActivity(forMain);
                 }
             }

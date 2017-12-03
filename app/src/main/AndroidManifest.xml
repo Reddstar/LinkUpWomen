@@ -10,11 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".view.GruposActivity"
@@ -24,7 +19,16 @@
         <activity android:name=".view.RankingsActivity" />
         <activity android:name=".view.SobresActivity" />
         <activity android:name=".view.PerfilsActivity" />
-        <activity android:name=".view.DenunciasActivity"></activity>
+        <activity android:name=".view.DenunciasActivity" />
+        <activity
+            android:name=".view.SplashScreenActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

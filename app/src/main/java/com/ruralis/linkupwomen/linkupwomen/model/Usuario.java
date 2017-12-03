@@ -6,6 +6,7 @@ package com.ruralis.linkupwomen.linkupwomen.model;
 
 public class Usuario {
 
+    private String id;
     private String login;
     private String senha;
     private String nommeCompleto;
@@ -41,5 +42,13 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
