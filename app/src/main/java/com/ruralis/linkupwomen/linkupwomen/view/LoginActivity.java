@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-        Sessao.setServerID("http://10.98.1.107:5000");
+        Sessao.setServerID("http://10.244.156.122:5000");
         sessao = Sessao.getInstance();
         usuario = new Usuario();
         controlador = new ControladorLogin();
